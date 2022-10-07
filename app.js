@@ -1,9 +1,9 @@
 const parent = document.createElement("div")
-parent.className = "container"
+parent.className = "parent"
 
 function ticketGenerator(pool, width, height) {
 	const ticketDiv = document.createElement("div")
-	ticketDiv.className = "ticket col"
+	ticketDiv.className = "ticket col-xs-12 col"
 	const ticket = []
 	let count = 0
 	while (count < width * height) {
@@ -32,6 +32,9 @@ button.addEventListener("click", (event) => {
 	const height = document.querySelector("#height").value
 	const amount = document.querySelector("#amount").value
 	event.preventDefault()
+	if (width * height > pool) {
+		return false
+	}
 	for (let i = 0; i < amount; i++) {
 		if (i === 0 || i % 2 === 0) {
 			const row = document.createElement("div")
@@ -41,4 +44,10 @@ button.addEventListener("click", (event) => {
 		parent.lastChild.appendChild(ticketGenerator(pool, width, height))
 	}
 	document.body.appendChild(parent)
+	const rows = document.querySelectorAll(".row")
+	for (let i = 0; i < rows.length; i++) {
+		if ((i + 1) % 3 === 0) {
+			rows[i].classList.add("zero-margin")
+		}
+	}
 })
