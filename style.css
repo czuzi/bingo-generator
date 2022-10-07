@@ -8,16 +8,10 @@ span {
 	height: 2rem;
 }
 
-.ticket:first-child {
-	margin: 1rem 2rem 4.3rem 4rem;
-	padding-right: 10px;
-	padding-left: 10px;
-}
-
-.ticket:last-child {
-	margin: 20px 70px 70px 32px;
-	padding-right: 10px;
-	padding-left: 10px;
+.ticket {
+	margin: 20px 0 20px 0;
+	padding-right: 2px;
+	padding-left: 2px;
 }
 
 form {
@@ -29,4 +23,12 @@ label {
 
 .parent {
 	text-align: center;
+}
+
+.input-div {
+	padding: 3px 0 3px 0;
+}
+
+button {
+	margin: 3px;
 }
