@@ -27,6 +27,7 @@ function ticketGenerator(pool, width, height) {
 const button = document.querySelector("button")
 
 button.addEventListener("click", (event) => {
+	parent.innerHTML = ""
 	const pool = document.querySelector("#pool").value
 	const width = document.querySelector("#width").value
 	const height = document.querySelector("#height").value
