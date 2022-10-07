@@ -3,7 +3,7 @@ parent.className = "parent"
 
 function ticketGenerator(pool, width, height) {
 	const ticketDiv = document.createElement("div")
-	ticketDiv.className = "ticket col-xs-12 col"
+	ticketDiv.className = "ticket col"
 	const ticket = []
 	let count = 0
 	while (count < width * height) {
