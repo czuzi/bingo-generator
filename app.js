@@ -1,25 +1,14 @@
-var pool = document.getElementById(pool)
-var width = document.getElementById(width)
-var height = document.getElementById(height)
-var amount = document.getElementById(amount)
-
-const layout = document.createDocumentFragment()
-
 const parent = document.createElement("div")
-parent.className = "parent"
-
-const ticketDiv = document.createElement("div")
-ticketDiv.className = "ticket"
-
-layout.appendChild(parent).appendChild(ticketDiv)
+parent.className = "container"
 
 function ticketGenerator(pool, width, height) {
+	const ticketDiv = document.createElement("div")
+	ticketDiv.className = "ticket col"
 	const ticket = []
-	const drawn = []
 	let count = 0
 	while (count < width * height) {
 		const random = Math.floor(Math.random() * pool) + 1
-		if (!drawn.includes(random)) {
+		if (!ticket.includes(random)) {
 			ticket.push(random)
 			const actualElement = document.createElement("span")
 			actualElement.className = "span"
@@ -27,13 +16,29 @@ function ticketGenerator(pool, width, height) {
 			ticketDiv.appendChild(actualElement)
 			count++
 		}
-		if (count % width === 0) {
+		if (count % width === 0 && ticketDiv.lastChild.innerHTML !== "") {
 			const br = document.createElement("br")
 			ticketDiv.appendChild(br)
 		}
 	}
-	document.body.appendChild(ticketDiv)
+	return ticketDiv
 }
-console.log(layout)
-ticketGenerator(90, 5, 5)
-ticketGenerator(90, 5, 5)
+
+const button = document.querySelector("button")
+
+button.addEventListener("click", (event) => {
+	const pool = document.querySelector("#pool").value
+	const width = document.querySelector("#width").value
+	const height = document.querySelector("#height").value
+	const amount = document.querySelector("#amount").value
+	event.preventDefault()
+	for (let i = 0; i < amount; i++) {
+		if (i === 0 || i % 2 === 0) {
+			const row = document.createElement("div")
+			row.className = "row"
+			parent.appendChild(row)
+		}
+		parent.lastChild.appendChild(ticketGenerator(pool, width, height))
+	}
+	document.body.appendChild(parent)
+})
