@@ -25,17 +25,22 @@ function ticketGenerator(pool, width, height) {
 }
 
 const button = document.querySelector("button")
-
 button.addEventListener("click", (event) => {
-	parent.innerHTML = ""
+	clickInit()
+
 	const pool = document.querySelector("#pool").value
 	const width = document.querySelector("#width").value
 	const height = document.querySelector("#height").value
 	const amount = document.querySelector("#amount").value
 	event.preventDefault()
+
 	if (width * height > pool) {
+		const message = document.querySelector("#message")
+		message.textContent +=
+			"Az oszlopok es a sorok szorzatanak osszege nem lehet kisebb mint a szamok halmaza"
 		return false
 	}
+
 	for (let i = 0; i < amount; i++) {
 		if (i === 0 || i % 2 === 0) {
 			const row = document.createElement("div")
@@ -44,6 +49,7 @@ button.addEventListener("click", (event) => {
 		}
 		parent.lastChild.appendChild(ticketGenerator(pool, width, height))
 	}
+
 	document.body.appendChild(parent)
 	const rows = document.querySelectorAll(".row")
 	for (let i = 0; i < rows.length; i++) {
@@ -52,3 +58,8 @@ button.addEventListener("click", (event) => {
 		}
 	}
 })
+
+function clickInit() {
+	parent.innerHTML = ""
+	message.textContent = ""
+}
