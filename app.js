@@ -34,12 +34,7 @@ button.addEventListener("click", (event) => {
 	const amount = document.querySelector("#amount").value
 	event.preventDefault()
 
-	if (width * height > pool) {
-		const message = document.querySelector("#message")
-		message.textContent +=
-			"Az oszlopok es a sorok szorzatanak osszege nem lehet kisebb mint a szamok halmaza"
-		return false
-	}
+	validateInput(pool, width, height)
 
 	for (let i = 0; i < amount; i++) {
 		if (i === 0 || i % 2 === 0) {
@@ -62,4 +57,13 @@ button.addEventListener("click", (event) => {
 function clickInit() {
 	parent.innerHTML = ""
 	message.textContent = ""
+}
+
+function validateInput(pool, width, height) {
+	if (width * height > pool) {
+		const message = document.querySelector("#message")
+		message.textContent +=
+			"Az oszlopok és a sorok szorzatának összege nem lehet kisebb mint a számok halmaza"
+		throw "invalid input"
+	}
 }
